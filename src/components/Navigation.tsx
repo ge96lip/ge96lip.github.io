@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -43,7 +44,7 @@ const Navigation = () => {
             CSH
           </button>
 
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <Button
                 key={item.href}
@@ -54,6 +55,12 @@ const Navigation = () => {
                 {item.label}
               </Button>
             ))}
+            <Link to="/cv">
+              <Button className="ml-4 bg-accent hover:bg-accent/90 text-accent-foreground">
+                <FileText className="w-4 h-4 mr-2" />
+                View CV
+              </Button>
+            </Link>
           </div>
 
           <button
@@ -77,6 +84,12 @@ const Navigation = () => {
                 {item.label}
               </Button>
             ))}
+            <Link to="/cv">
+              <Button className="w-full mt-2 bg-accent hover:bg-accent/90 text-accent-foreground">
+                <FileText className="w-4 h-4 mr-2" />
+                View CV
+              </Button>
+            </Link>
           </div>
         )}
       </div>

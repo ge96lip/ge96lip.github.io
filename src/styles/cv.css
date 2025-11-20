@@ -1,0 +1,470 @@
+/* CV-specific styles */
+
+/* General screen styles for consistent CardTitle sizing */
+.text-lg.font-bold.text-accent {
+  font-size: 1.125rem !important; /* 18px - matches other text-lg elements */
+  line-height: 1.2 !important;
+}
+
+@media print {
+  /* Force color printing */
+  * {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Hide non-print elements */
+  .no-print,
+  .print\\:hidden {
+    display: none !important;
+  }
+  
+  /* Page settings for maximum content utilization */
+  @page {
+    margin: 0.3in !important;
+    size: letter !important;
+  }
+  
+  /* Body and main container - readable but compact */
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 10px !important; /* Slightly larger base font */
+    line-height: 1.2 !important;
+    background: white !important;
+    color: #2d5016 !important; /* Dark green for text */
+  }
+  
+  .cv-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 8px !important; /* Reduced from 12px */
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    font-size: 9px !important;
+    line-height: 1.1 !important;
+  }
+  
+  /* Better page break controls - allow flowing between sections */
+  .card,
+  .cv-section,
+  .progress-container {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  /* Allow page breaks between sections but avoid orphaned headers */
+  section {
+    page-break-after: auto !important;
+    page-break-before: auto !important;
+  }
+  
+  /* Keep headers with content, but don't force section breaks */
+  h1, h2, h3, h4 {
+    page-break-after: avoid !important;
+    orphans: 2 !important;
+    widows: 2 !important;
+  }
+  
+  /* Compact font sizes for better readability */
+  h1 {
+    font-size: 28px !important; /* Much larger for main name */
+    margin: 6px 0 4px 0 !important;
+    line-height: 1.1 !important;
+    font-weight: 800 !important; /* Extra bold */
+    letter-spacing: 0.5px !important; /* Better spacing */
+  }
+  
+  h2 {
+    font-size: 18px !important; /* Healthcare AI Researcher */
+    margin: 3px 0 2px 0 !important;
+    line-height: 1.1 !important;
+  }
+  
+  h3 {
+    font-size: 14px !important; /* Section headers like "Technical Skills" */
+    margin: 3px 0 4px 0 !important;
+    padding-left: 8px !important;
+    line-height: 1.1 !important;
+  }
+  
+  h4 {
+    font-size: 12px !important; /* Job titles */
+    margin: 2px 0 1px 0 !important;
+    line-height: 1.1 !important;
+  }
+  
+  /* Card styling - NO SHADOWS, minimal borders, very compact */
+  .card {
+    border: 1px solid #e5e7eb !important;
+    background: white !important;
+    margin: 2px 0 !important; /* Reduced from 4px */
+    padding: 4px !important; /* Reduced from 6px */
+    border-radius: 3px !important;
+    box-shadow: none !important; /* Remove all shadows */
+  }
+  
+  /* Very compact spacing for maximum content, but better section separation */
+  .mb-8 { margin-bottom: 8px !important; } /* Increased for main sections */
+  .mb-6 { margin-bottom: 6px !important; }
+  .mb-4 { margin-bottom: 4px !important; } /* Increased for headlines */
+  .mb-2 { margin-bottom: 2px !important; }
+  .p-8 { padding: 4px !important; }
+  .p-6 { padding: 3px !important; }
+  .p-4 { padding: 2px !important; }
+  .space-y-4 > * + * { margin-top: 3px !important; }
+  .space-y-2 > * + * { margin-top: 1px !important; }
+  .gap-4 { gap: 3px !important; }
+  .gap-2 { gap: 2px !important; }
+  
+  /* Better spacing after section headlines */
+  h3 {
+    font-size: 11px !important;
+    margin: 3px 0 4px 0 !important; /* Increased bottom margin for headlines */
+    padding-left: 8px !important;
+    line-height: 1.0 !important;
+  }
+  
+  /* Remove extra space after company/school names in cards */
+  .card .mb-3 { margin-bottom: 0px !important; } /* NO space after company/school */
+  .card .mb-2 { margin-bottom: 0px !important; } /* NO space after institution */
+  
+  /* Override any margin classes within cards for tight spacing */
+  .card .mb-1 { margin-bottom: 0px !important; }
+  .card .mb-0 { margin-bottom: 0px !important; }
+  
+  /* Force tight spacing in experience and education sections */
+  .card p.text-secondary { margin-bottom: 0px !important; } /* Institution/company names */
+  .card p.font-semibold { margin-bottom: 0px !important; } /* Organization names */
+  
+  /* Better section spacing between main blocks */
+  section {
+    margin-bottom: 10px !important; /* More space between main sections */
+  }
+  
+  /* Space after section headings but not within cards */
+  section h3 {
+    margin-bottom: 5px !important; /* More space after main headlines */
+    font-size: 14px !important; /* Match h3 size for section headers */
+  }
+  
+  /* Subsection headings (card titles) - matching the screen proportions */
+  .card h4, /* CardTitle components */
+  .card [role="heading"],
+  .card .font-bold.text-lg,
+  .card .text-accent,
+  .text-accent,
+  .text-lg.text-accent,
+  .text-lg.font-bold.text-accent {
+    font-size: 12px !important; /* Proportional to h4 size */
+    line-height: 1.1 !important;
+  }
+  
+  /* Also target CardTitle specifically by class pattern */
+  [class*="CardTitle"],
+  .card-title,
+  .card .text-lg,
+  h3.text-accent,
+  div.text-accent {
+    font-size: 12px !important; /* Card subtitle size - matches h4 */
+    line-height: 1.1 !important;
+  }
+  
+  /* Ensure lists in cards are tight */
+  .card ul {
+    margin-top: 1px !important; /* Tight space before bullet points */
+  }
+  
+  .card li {
+    margin-bottom: 0px !important; /* No extra space between bullets */
+  }
+  
+  /* REMOVE blank lines after institution names specifically */
+  .card .flex.justify-between.items-start {
+    margin-bottom: 0px !important; /* NO space after company/school header */
+  }
+  
+  .card .flex.justify-between.items-start + div,
+  .card .flex.justify-between.items-start + ul {
+    margin-top: 1px !important; /* Minimal space before next element */
+  }
+  
+  /* INVERTED COLOR SCHEME */
+  
+  /* Original yellow/accent (gold) -> Orange in print */
+  .text-accent,
+  .text-accent *,
+  [class*="text-accent"] {
+    color: #ea580c !important; /* Orange */
+  }
+  
+  .border-accent,
+  [class*="border-accent"] {
+    border-color: #ea580c !important;
+  }
+  
+  .bg-accent,
+  [class*="bg-accent"] {
+    background-color: rgba(234, 88, 12, 0.1) !important;
+  }
+  
+  .border-l-4 {
+    border-left: 4px solid #ea580c !important;
+  }
+  
+  /* Original orange/secondary -> Yellow in print */
+  .text-secondary,
+  .text-secondary *,
+  [class*="text-secondary"] {
+    color: #d97706 !important; /* Yellow-orange */
+  }
+  
+  .bg-secondary,
+  [class*="bg-secondary"] {
+    background-color: #d97706 !important;
+  }
+  
+  /* Secondary with opacity variations */
+  .bg-secondary\/20,
+  [class*="bg-secondary/20"] {
+    background-color: rgba(217, 119, 6, 0.15) !important;
+  }
+  
+  .border-secondary\/30,
+  [class*="border-secondary/30"] {
+    border-color: rgba(217, 119, 6, 0.4) !important;
+  }
+  
+  /* YELLOW PROGRESS BARS (inverted from orange) */
+  [role="progressbar"] div,
+  .progress-bar,
+  [data-progress] > div,
+  [class*="progress"] > div {
+    background-color: #d97706 !important;
+  }
+  
+  [role="progressbar"],
+  .progress-bg,
+  [data-progress],
+  [class*="progress"][class*="bg"] {
+    background-color: rgba(217, 119, 6, 0.15) !important;
+    height: 6px !important;
+  }
+  
+  /* Skill badges - smaller and more compact */
+  .skill-badge,
+  [class*="bg-secondary/20"],
+  [class*="px-3"][class*="py-1"][class*="rounded-full"] {
+    background-color: rgba(217, 119, 6, 0.15) !important;
+    color: #d97706 !important;
+    border: 1px solid rgba(217, 119, 6, 0.4) !important;
+    padding: 1px 6px !important;
+    font-size: 8px !important;
+    margin: 1px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Accent badges (tools) - smaller */
+  [class*="bg-accent/20"] {
+    background-color: rgba(234, 88, 12, 0.1) !important;
+    color: #ea580c !important;
+    border: 1px solid rgba(234, 88, 12, 0.3) !important;
+    padding: 1px 6px !important;
+    font-size: 8px !important;
+    margin: 1px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Text size overrides - smaller for more content */
+  .text-4xl { font-size: 18px !important; }
+  .text-2xl { font-size: 15px !important; }
+  .text-xl { font-size: 13px !important; }
+  .text-lg { font-size: 12px !important; }
+  .text-base { font-size: 9px !important; }
+  .text-sm { font-size: 8px !important; }
+  .text-xs { font-size: 7px !important; }
+  
+  /* Grid optimizations */
+  .grid {
+    gap: 6px !important;
+  }
+  
+  /* Header optimization - very compact for first page */
+  header {
+    padding: 3px 0 !important; /* Reduced from 6px */
+    margin-bottom: 5px !important; /* Reduced from 8px */
+    page-break-after: avoid !important;
+  }
+  
+  /* Contact info - very compact */
+  .flex.flex-wrap.justify-center {
+    gap: 6px !important; /* Reduced from 8px */
+    font-size: 7px !important; /* Reduced from 8px */
+  }
+  
+  /* Icons even smaller */
+  .w-4.h-4 {
+    width: 10px !important; /* Reduced from 12px */
+    height: 10px !important;
+  }
+  
+  .lucide {
+    width: 10px !important; /* Reduced from 12px */
+    height: 10px !important;
+  }
+  
+  /* Make gradient text print as solid orange */
+  .bg-gradient-to-r {
+    background: none !important;
+    color: #ea580c !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+  
+  /* Remove all shadows and gradients for clean print */
+  .rounded-2xl { border-radius: 4px !important; }
+  .shadow-2xl { box-shadow: none !important; }
+  .shadow-lg { box-shadow: none !important; }
+  .shadow-md { box-shadow: none !important; }
+  .shadow { box-shadow: none !important; }
+  
+  /* Remove gradient backgrounds for print */
+  .bg-gradient-to-br { background: white !important; }
+  .backdrop-blur-sm { backdrop-filter: none !important; }
+  
+  /* Ensure all backgrounds are white in print */
+  .bg-background\/30 { background: white !important; }
+  .bg-background\/50 { background: white !important; }
+  .bg-card { background: white !important; }
+  
+  /* Remove any border opacity for cleaner look */
+  .border-border\/20 { border: 1px solid #e5e7eb !important; }
+  .border-border\/50 { border: 1px solid #e5e7eb !important; }
+  
+  /* Text colors for visibility */
+  .text-foreground {
+    color: #2d5016 !important; /* Dark green */
+  }
+  
+  .text-foreground\/90 {
+    color: #374a1c !important;
+  }
+  
+  .text-foreground\/70 {
+    color: #4a5f28 !important;
+  }
+  
+  /* Override any remaining white text */
+  * {
+    color: #2d5016 !important;
+  }
+  
+  /* But keep our colored elements */
+  .text-accent,
+  .text-accent *,
+  [class*="text-accent"] {
+    color: #ea580c !important;
+  }
+  
+  .text-secondary,
+  .text-secondary *,
+  [class*="text-secondary"] {
+    color: #d97706 !important;
+  }
+  
+  /* Override any remaining print utility classes for ultra-compact layout */
+  .print\\:p-1 { padding: 2px !important; }
+  .print\\:p-2 { padding: 3px !important; }
+  .print\\:mb-2 { margin-bottom: 2px !important; }
+  .print\\:mb-3 { margin-bottom: 3px !important; }
+  .print\\:text-xs { font-size: 7px !important; }
+  .print\\:text-sm { font-size: 8px !important; }
+  .print\\:gap-1 { gap: 2px !important; }
+  .print\\:space-y-0 > * + * { margin-top: 1px !important; }
+  .print\\:space-y-1 > * + * { margin-top: 1px !important; }
+  .print\\:space-y-2 > * + * { margin-top: 2px !important; }
+  .print\\:h-1 { height: 3px !important; }
+  
+  /* Specific section flow optimization */
+  /* Allow research projects and skills to flow together */
+  section:nth-of-type(2), /* Research projects */
+  section:nth-of-type(3) { /* Technical skills */
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+  
+  /* Start content higher on page 1 */
+  body {
+    padding-top: 0 !important;
+  }
+  
+  /* Reduce any extra spacing at top */
+  .cv-content {
+    padding-top: 4px !important;
+  }
+}
+
+/* Header gradient overrides for screen and print */
+.header-gradient {
+  /* vivid green -> green -> orange -> green mix for screen */
+  background-image: linear-gradient(90deg, #10B981 0%, #34D399 40%, #F97316 50%, #34D399 100%);
+  background-color: #10B981; /* fallback if gradients are skipped */
+  z-index: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@media print {
+  /* Make the main container transparent so the header gradient can show through in print */
+  .cv-content {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  header {
+    background: transparent !important;
+  }
+
+  .header-gradient {
+    /* stronger, fully opaque stops for printers that support background printing */
+    background-image: linear-gradient(90deg, rgba(16,185,129,1) 0%, rgba(52,211,153,1) 40%, rgba(249,115,22,1) 50%, rgba(52,211,153,1) 100%) !important;
+    background-color: #10B981 !important;
+    opacity: 1 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* Custom circular progress for languages */
+.language-circle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: conic-gradient(
+    hsl(var(--accent)) var(--progress, 0%),
+    hsl(var(--accent) / 0.2) var(--progress, 0%)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.language-circle::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: hsl(var(--card));
+}
+
+.language-percentage {
+  position: relative;
+  z-index: 1;
+  font-size: 10px;
+  font-weight: bold;
+  color: hsl(var(--accent));
+}
