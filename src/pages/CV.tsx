@@ -15,6 +15,22 @@ const CV = () => {
     window.print();
   };
 
+  // allow hiding the top controls with ?noButtons=1 in the URL (temporary / referable)
+  const hideControls = (() => {
+    if (typeof window === 'undefined') return false;
+    // prefer normal search
+    if (window.location.search && window.location.search.length > 1) {
+      return new URLSearchParams(window.location.search).get('noButtons') === '1';
+    }
+    // support hash-based routing like #/cv?noButtons=1 or #?noButtons=1
+    const hash = window.location.hash || '';
+    const qIndex = hash.indexOf('?');
+    if (qIndex !== -1) {
+      return new URLSearchParams(hash.substring(qIndex)).get('noButtons') === '1';
+    }
+    return false;
+  })();
+
   // Tools & Technologies as tags
   const toolsAndTech = [
     "High Performance Computing", "Cloud Computing", "Git/GitHub", "Docker", "Linux/Unix", 
@@ -93,22 +109,24 @@ const CV = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 p-4">
-      {/* Print/Download Controls */}
-      <div className="no-print flex justify-center gap-4 mb-6 print:hidden">
-        <Button onClick={handlePrint} className="flex items-center gap-2 bg-accent hover:bg-accent/90">
-          <Download className="w-4 h-4" />
-          Print/Save as PDF
-        </Button>
-        <Button variant="outline" onClick={() => window.history.back()}>
-          Back to Portfolio
-        </Button>
-      </div>
+      {/* Print/Download Controls - TEMPORARILY HIDDEN (remove the comments to restore) */}
+      {/* {!hideControls && (
+        <div className="no-print flex justify-center gap-4 mb-6 print:hidden">
+          <Button onClick={handlePrint} className="flex items-center gap-2 bg-accent hover:bg-accent/90">
+            <Download className="w-4 h-4" />
+            Print/Save as PDF
+          </Button>
+          <Button variant="outline" onClick={() => window.history.back()}>
+            Back to Portfolio
+          </Button>
+        </div>
+      )} */}
 
       {/* CV Content */}
       <div className="cv-content max-w-4xl mx-auto bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border/20 rounded-2xl p-8 shadow-2xl">
         {/* Header with Gradient */}
         <header className="text-center border-b-2 border-accent/30 pb-6 mb-8 relative">
-          <div className="absolute inset-0 rounded-t-2xl -m-8 mb-0" style={{ backgroundImage: 'linear-gradient(90deg, rgba(34,197,94,0.16) 0%, rgba(250,204,21,0.14) 50%, rgba(34,197,94,0.16) 100%)' }}></div>
+          <div className="absolute inset-0 rounded-t-2xl -m-8 mb-0" style={{ backgroundColor: '#90a955' }}></div>
           <div className="relative z-10">
             <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent mb-3 tracking-wide">
               Carlotta Sophia Hoelzle
@@ -118,7 +136,7 @@ const CV = () => {
             <div className="flex flex-wrap justify-center gap-4 text-sm text-foreground/80">
               <div className="flex items-center gap-1">
                 <Mail className="w-4 h-4 text-accent" />
-                <span>carlotta.hoelzle@example.com</span>
+                <span>choelzle@mgh.harvard.edu</span>
               </div>
               
               <div className="flex items-center gap-1">
